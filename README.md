@@ -1,11 +1,6 @@
 # ChIP-seq Peak Replicate Analyzer
 
-A modular toolkit for analyzing C# Custom thresholds and file patterns
-python differential_enrichment.py cond1/ cond2/ \
-  --file-pattern ".*_TCF4_.*\.csv" \
-  --min-neg-log-pval 3 \
-  --max-distance 1000 \
-  --min-replicates 2q peaks across replicates to find conserved peaks and perform differential enrichment analysis between conditions.
+A modular toolkit for analyzing Chip-seq data across technical replicates and case-vs-control samples. 
 
 ## Overview
 
@@ -16,8 +11,6 @@ This toolkit addresses the common problem in ChIP-seq analysis where you have re
 - **Single Tissue Analysis**: Find conserved peaks across replicates of a single condition
 - **Differential Enrichment**: Compare peak conservation between two conditions/tissues
 - **Flexible Thresholds**: Configurable p-value filtering, distance thresholds, and minimum replicate requirements
-- **Efficient Processing**: Chromosome-based optimization for large datasets
-- **Comprehensive Logging**: Detailed progress tracking and performance metrics
 
 ## Installation
 
@@ -155,35 +148,5 @@ Optional columns:
 3. **Overlap Testing**: Test each conserved peak from condition 1 against all condition 2 peaks
 4. **Unique Identification**: Peaks with no overlaps are considered unique
 
-## Example Workflow
-
-### For the Original TCF4 XX/XY Analysis
-
-```bash
-# Analyze XX and XY samples separately, then compare
-python differential_enrichment.py . . \
-  --condition1-name XX \
-  --condition2-name XY \
-  --file-pattern "X[XY]_TCF4_\d\.csv" \
-  --min-neg-log-pval 2 \
-  --max-distance 1000 \
-  --min-replicates 3
-```
-
-This will:
-1. Load XX_TCF4_*.csv and XY_TCF4_*.csv files
-2. Find peaks conserved across all 3 replicates in each condition
-3. Identify peaks unique to XX (no overlap with ANY XY peak)
-4. Identify peaks unique to XY (no overlap with ANY XX peak)
-
-## Performance Considerations
-
-- **Memory Usage**: Large datasets are processed chromosome by chromosome
-- **Progress Tracking**: Detailed progress bars for long-running operations
-- **Logging**: Comprehensive timing and performance metrics
-- **Optimization**: Inner progress bars only shown for computationally intensive chromosomes
-
-## Legacy Compatibility
-
-The original `peak_grouper.py` script is maintained for backward compatibility but the new modular structure is recommended for new analyses.
-Analyze technical replicates of ChIP-seq peak data to identify well-conserved peaks
+### Credit
+R.S. used Claude Sonnet 4 to help write some of the code  
